@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	AdminController!{{parent()}}
+{% endblock %}
+
+{% block body %}
+	
+
+	<div class="example-wrapper">
+		{% for notification in app.flashes('success') %}
+			<div>{{ notification }}</div>
+		{% endfor %}
+		
+
+		{% for contact in contacts %}
+			Bonjour
+			{{ contact.firstname}}
+			{{ contact.lastname }}
+			
+			<a href="{{ path('supprimer_contact' , {'id' : contact.id} ) }}">supprimer</a><br>
+		{% endfor %}
+	{% endblock %}

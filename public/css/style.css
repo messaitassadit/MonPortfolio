@@ -1,0 +1,34 @@
+:root{
+    --color:rgb(142, 165, 42);
+    --txtColor:red;
+    }/*les variables seront accessible dans tt le code CSS grace a root*/
+    a{
+        color: var(--color);
+    }
+    .container{
+        display: flex;
+        flex-direction: row;
+    }
+    #log{
+    
+      width: 100%;
+    }
+    #divlogo, #divNav{
+        width: 50%;
+    }
+    /*header{
+    
+      position: fixed;
+    }*/
+    
+    @media all and (max-width: 490px)
+    {
+      .container{
+          
+          flex-direction: column;
+      } 
+      #divlogo, #divNav{
+    
+        width: 100%;
+      }
+    }

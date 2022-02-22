@@ -12,16 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'main')]
-    public function index(): Response
-    {
-        return $this->render('main/accueil.html.twig', [
-            //'controller_name' => 'MainController',
-        ]);
-         
-    }
-
-    #[Route('/main/contact/ajouter', name: 'main_contact_ajouter')]
+       #[Route('/', name: 'main')]
     public function ajouter_contacts(Request $request, EntityManagerInterface $manager): Response
 
     {
@@ -37,18 +28,50 @@ class MainController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
-            $this->addFlash('success', 'Bonjour' . $contact->getFirstname() . "vous avez bien été ajouté suer la BDD");
+            $this->addFlash('success', 'Bonjour' . $contact->getFirstname() . "votre message est bien envoyé!!");
             return $this->redirectToRoute('main');
             //dd($contact);
         }
-
-
-        return $this->render('main/ajouter_contact.html.twig', [
+        return $this->render('main/accueil.html.twig', [
 
             "formContact" => $form->createView(),
             //"contact"=>$contact
         ]);
     }
+
+    #[Route('/main_a_propos', name: 'a_propos')]
+    public function ajouter_contactss(Request $request, EntityManagerInterface $manager): Response
+
+    {
+        $contact = new Contact;
+        $form = $this->createForm(ContactType::class, $contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //dd($request);
+
+            $manager->persist($contact);
+            $manager->flush();
+
+            $this->addFlash('success', 'Bonjour' . $contact->getFirstname() . "vous avez bien été ajouté sur la BDD");
+            return $this->redirectToRoute('main');
+            //dd($contact);
+        }
+
+
+        return $this->render('main/a_propos.html.twig', [
+
+            "formContact" => $form->createView(),
+            //"contact"=>$contact
+        ]);
+    }
+
+
+
+
+
 
 }
 

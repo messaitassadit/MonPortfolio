@@ -17,7 +17,8 @@
 			Bonjour
 			{{ contact.firstname}}
 			{{ contact.lastname }}
+			{{ contact.comment}}
 			
-			<a href="{{ path('supprimer_contact' , {'id' : contact.id} ) }}">supprimer</a><br>
+			<a href="{{ path('admin_supprimer_contact' , {'id' : contact.id} ) }}">supprimer</a><br>
 		{% endfor %}
 	{% endblock %}

@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ContactRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
+#[UniqueEntity(fields:"email", message:"ce mail existe déjà")]
+
 class Contact
 {
     #[ORM\Id]
@@ -13,7 +17,10 @@ class Contact
     #[ORM\Column(type: 'integer')]
     private $id;
 
+
+    
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(min:3, max:16, minMessage:'3 caractères minimum', maxMessage:'16 caractères maximum')]
     private $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]

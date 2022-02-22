@@ -3,21 +3,30 @@
 
 		<div id="divlogo">
 
-			<img id="logo"  alt="">
+			<img id="logo" src={{asset('img/emoji.png')}} alt="">
 		</div>
 
 		<div id="divNav">
 			<nav>
 				<ul>
-					<li><a href="">Accueil</a></li>
-					<li><a href="">Contact</a></li>
-										<li><a href="">Deconnecter</a></li>
-					<li><a href="">Connection</a></li>
+					<li><a href="{{path('main')}}">Acceuil</a></li>
+					
+					<li><a href="{{path('a_propos')}}">A propos</a></li>
+					<li><a href="{{path('app_logout')}}">Deconnecter</a></li>
+					<li><a href="{{path('app_login')}}">Connection</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
-	
+	{% if is_granted('ROLE_ADMIN') %}
+{# <a style="display : {{ echoAdmin }}" href={{path ('admin')}}>Admin</a> #}
+<a href={{path ('admin')}}>Admin</a>
+{% endif %}
+{% if is_granted('ROLE_CLIENT') %}
+<a href={{path ('boutique_privee')}}>Boutique privée</a>
+{% endif %}
+</header>
 
-<script src={{asset('js/test.js')}}></script>
+
+<script src="{{asset('js/test.js')}}"></script>
 {# si on veux applle un script js#}
